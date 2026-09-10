@@ -1,0 +1,58 @@
+PROYECTO PRICE - VERIFICACIÓN DE LA ENTREGA
+09/09/2026
+
+COMPROBACIONES COMPLETADAS
+
+1. Android
+   Compilación :app:assembleDebug y :app:testDebugUnitTest: correctas.
+   Gradle 9.2.1, AGP 9.0.1, Java 17 y SDK Android 36.
+   Cinco pruebas de validación aprobadas y una prueba básica heredada.
+   El APK entregado corresponde al código fuente incluido en este ZIP.
+
+2. API REST
+   Las 22 pruebas de pruebas/test_api.py finalizaron correctamente.
+   Utilizaron peticiones HTTP reales y una base SQLite temporal.
+   Cubren autenticación, roles, CRUD, duplicados, conflictos de versión,
+   fechas, horarios, precios, hechos, firmas, estados, relaciones, búsqueda
+   y generación de un PDF de dos páginas.
+
+3. Ejecución de Android
+   APK instalado y ejecutado en un emulador Android 10 (API 29).
+   Inicio de sesión como fiscalizador: correcto.
+   Conexión Retrofit, descarga de catálogos y registros: correctas.
+   Listados de establecimientos y fiscalizaciones: comprobados.
+   Apertura de una fiscalización con datos de prueba: correcta.
+   Precios, tres verificaciones e incumplimientos con hechos: visibles.
+   Vista previa de las dos páginas: correcta.
+   Finalización y guardado mediante el selector de Android: correctos.
+   El resumen final mostró ACTA GENERADA: 1 y pendientes: 0.
+   El registro AndroidRuntime no mostró excepciones de la aplicación
+   durante este recorrido.
+
+4. Documentos
+   ACTA_PRICE_ANDROID.pdf: archivo generado y guardado por Android.
+   ACTA_PRICE_DEMO.pdf: archivo generado por la API con la misma plantilla.
+   Ambos tienen exactamente dos páginas y datos ficticios identificados.
+   Se revisó visualmente la distribución de campos y firmas.
+   DOCUMENTO_TECNICO.docx: cinco páginas renderizadas y revisadas.
+   ACTA PRICE.docx: formato original conservado.
+
+5. Evidencias
+   Las trece capturas numeradas corresponden a la ejecución real del APK.
+   RECORRIDO_PRICE.mp4 es un montaje de esas capturas con explicaciones,
+   sin audio; no es una grabación continua en tiempo real. Muestra un
+   registro de demostración previamente cargado, su revisión y cierre.
+   GUIA_VIDEO.txt permite grabar una exposición propia desde el registro
+   inicial, con narración y demostración adicional de permisos y offline.
+
+ALCANCE DE LAS PRUEBAS
+
+El adaptador de base de datos usa SQLite de forma exclusiva. La ejecución
+del servidor se verificó con la base SQLite incluida en el proyecto.
+
+La captura GPS, selección de fotografías, dibujo táctil y uso sin conexión
+están implementados. No se realizó una prueba de campo en teléfono físico
+ni una prueba completa de desconexión y reconexión del emulador.
+
+Las cuentas, RUC/DNI, coordenadas, nombres y firmas DEMO de las evidencias
+son ejemplos académicos. Registra los datos que correspondan al presentar.

@@ -1,0 +1,9 @@
+PRICE_DEMO.apk es una compilación de depuración para demostrar el proyecto.
+Puede instalarla en un emulador arrastrando el APK a su ventana o en un teléfono
+con Android 8.0 o superior. Debe mantener la API iniciada en su computadora.
+
+Si Android indica un conflicto de firma con su instalación anterior, use un
+emulador nuevo o desinstale la app anterior después de guardar sus datos.
+La desinstalación elimina los datos locales de esa instalación.
+
+El proyecto fuente está en la carpeta principal y se abre en Android Studio.

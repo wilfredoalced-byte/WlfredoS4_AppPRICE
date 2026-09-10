@@ -1,0 +1,736 @@
+{
+  "info": {
+    "name": "PRICE REST · Semana 04",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Flujo académico completo. Inicie la API. Ejecute en orden. Las firmas incluidas son DEMO. El PDF final queda registrado; no se elimina automáticamente."
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "01 API disponible",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/health",
+        "auth": {
+          "type": "noauth"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('API disponible',()=>pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 Login ADMIN",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/login",
+        "auth": {
+          "type": "noauth"
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuario\": \"admin\",\n  \"password\": \"Price2026!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Login correcto',()=>pm.response.to.have.status(200));",
+              "pm.collectionVariables.set('token',pm.response.json().token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 Catálogo de incumplimientos",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/incumplimientos",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Seis incumplimientos',()=>pm.expect(pm.response.json().length).to.eql(6));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 Catálogo de productos",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/productos",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Once productos',()=>pm.expect(pm.response.json().length).to.eql(11));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 Crear establecimiento",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/establecimientos",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"uuid\": \"{{est_uuid}}\",\n  \"agente\": \"ESTACION DE SERVICIOS DE PRUEBA\",\n  \"codigo\": \"{{est_codigo}}\",\n  \"ruc\": \"20000000000\",\n  \"registro\": \"RH-DEMO-001\",\n  \"direccion\": \"AV. DE PRUEBA 123\",\n  \"distrito\": \"HUANUCO\",\n  \"provincia\": \"HUANUCO\",\n  \"departamento\": \"HUANUCO\",\n  \"telefono\": \"062000000\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Creado',()=>pm.response.to.have.status(201));",
+              "pm.collectionVariables.set('establecimiento_json',JSON.stringify(pm.response.json()));",
+              "pm.collectionVariables.set('est_version',pm.response.json().version);"
+            ]
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.collectionVariables.set('est_uuid',pm.variables.replaceIn('{{$guid}}'));",
+              "pm.collectionVariables.set('est_codigo','PM-'+pm.variables.replaceIn('{{$timestamp}}'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 Listar y buscar establecimientos",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/establecimientos?q={{est_codigo}}",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Encontrado',()=>pm.expect(pm.response.json().length).to.be.above(0));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "07 Detalle de establecimiento",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/establecimientos/{{est_uuid}}",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Detalle',()=>pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "08 Editar establecimiento",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/establecimientos/{{est_uuid}}",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{{establecimiento_json}}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Actualizado',()=>pm.response.to.have.status(200));",
+              "pm.collectionVariables.set('establecimiento_json',JSON.stringify(pm.response.json()));",
+              "pm.collectionVariables.set('est_version',pm.response.json().version);"
+            ]
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "let e=JSON.parse(pm.collectionVariables.get('establecimiento_json'));e.telefono='062123456';pm.collectionVariables.set('establecimiento_json',JSON.stringify(e));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "09 Crear fiscalización",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/fiscalizaciones",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"uuid\": \"{{fisc_uuid}}\",\n  \"establecimiento_uuid\": \"{{est_uuid}}\",\n  \"expediente\": \"{{fisc_expediente}}\",\n  \"fecha\": \"08/09/2026\",\n  \"hora_apertura\": \"09:00\",\n  \"hora_cierre\": \"09:45\",\n  \"estado\": \"EN PROCESO\",\n  \"datos\": {\n    \"agente\": \"ESTACION DE SERVICIOS DE PRUEBA\",\n    \"codigo\": \"DEMO-001\",\n    \"ruc\": \"20000000000\",\n    \"registro\": \"RH-DEMO-001\",\n    \"direccion\": \"AV. DE PRUEBA 123\",\n    \"distrito\": \"HUANUCO\",\n    \"provincia\": \"HUANUCO\",\n    \"departamento\": \"HUANUCO\",\n    \"telefono\": \"062000000\",\n    \"dni_fiscal\": \"00000000\",\n    \"nombre_fiscal\": \"FISCALIZADOR DE PRUEBA\",\n    \"dni_recibe\": \"00000000\",\n    \"nombre_recibe\": \"RECEPTOR DE PRUEBA\",\n    \"relacion_recibe\": \"ENCARGADO\",\n    \"otras\": \"Sin otras ocurrencias en este ejemplo.\",\n    \"documentacion\": \"Captura de consulta PRICE de demostración.\",\n    \"observaciones\": \"Datos ficticios para demostración académica. Firmas de prueba sin valor oficial.\",\n    \"negativa\": \"\"\n  },\n  \"precios\": [\n    {\n      \"producto_id\": 1,\n      \"fila\": 0,\n      \"marca\": \"\",\n      \"price\": \"15.50\",\n      \"publicado\": \"16.00\",\n      \"surtidor\": \"16.00\",\n      \"descuento\": \"\"\n    },\n    {\n      \"producto_id\": 9,\n      \"fila\": 0,\n      \"marca\": \"MARCA DEMO\",\n      \"price\": \"45.00\",\n      \"publicado\": \"45.00\",\n      \"surtidor\": \"\",\n      \"descuento\": \"\"\n    }\n  ],\n  \"verificaciones\": {\n    \"telefono_publicado\": true,\n    \"telefono_actualizado\": false,\n    \"horario_publicado\": true\n  },\n  \"incumplimientos\": [\n    {\n      \"incumplimiento_id\": 1,\n      \"hecho\": \"En el panel se observó Diésel B5 a S/ 16.00 por galón. El registro PRICE consultado mostraba S/ 15.50. Datos de prueba.\"\n    },\n    {\n      \"incumplimiento_id\": 3,\n      \"hecho\": \"El número del establecimiento no coincidía con el registro consultado. Ejemplo académico.\"\n    }\n  ],\n  \"firmas\": {\n    \"fiscalizador\": \"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\",\n    \"recibe\": \"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\"\n  },\n  \"documentos\": [],\n  \"latitud\": -9.93,\n  \"longitud\": -76.24\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Creada',()=>pm.response.to.have.status(201));",
+              "pm.collectionVariables.set('fiscalizacion_json',JSON.stringify(pm.response.json()));"
+            ]
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.collectionVariables.set('fisc_uuid',pm.variables.replaceIn('{{$guid}}'));",
+              "pm.collectionVariables.set('fisc_expediente','PM-'+pm.variables.replaceIn('{{$timestamp}}'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "10 Consultar fiscalización",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/fiscalizaciones/{{fisc_uuid}}",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Consultada',()=>pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "11 Agregar incumplimiento con hechos",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/fiscalizaciones/{{fisc_uuid}}/incumplimientos",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"incumplimiento_id\": 2,\n  \"hecho\": \"No se observó la lista vigente en el panel. Caso de prueba.\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Hecho guardado',()=>pm.response.to.have.status(200));",
+              "pm.collectionVariables.set('fiscalizacion_json',JSON.stringify(pm.response.json()));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "12 Finalizar fiscalización",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/fiscalizaciones/{{fisc_uuid}}",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{{fiscalizacion_json}}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Finalizada',()=>pm.response.to.have.status(200));",
+              "pm.collectionVariables.set('fiscalizacion_json',JSON.stringify(pm.response.json()));"
+            ]
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "let f=JSON.parse(pm.collectionVariables.get('fiscalizacion_json'));f.estado='FINALIZADA';pm.collectionVariables.set('fiscalizacion_json',JSON.stringify(f));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "13 Obtener Acta PDF",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/fiscalizaciones/{{fisc_uuid}}/acta/pdf",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('PDF disponible',()=>pm.response.to.have.status(200));",
+              "pm.test('Tipo PDF',()=>pm.expect(pm.response.headers.get('Content-Type')).to.include('application/pdf'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "14 Historial de cambios",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/fiscalizaciones/{{fisc_uuid}}/historial",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Hay historial',()=>pm.expect(pm.response.json().length).to.be.above(0));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "15 Impedir eliminación de establecimiento con actas",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "If-Match",
+            "value": "{{est_version}}"
+          }
+        ],
+        "url": "{{base_url}}/api/establecimientos/{{est_uuid}}",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Integridad referencial',()=>pm.response.to.have.status(409));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "16 Rechazar contraseña incorrecta",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/login",
+        "auth": {
+          "type": "noauth"
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuario\": \"admin\",\n  \"password\": \"incorrecta\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Credencial rechazada',()=>pm.response.to.have.status(401));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "17 Login CONSULTA",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/login",
+        "auth": {
+          "type": "noauth"
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuario\": \"consulta\",\n  \"password\": \"Price2026!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Login consulta',()=>pm.response.to.have.status(200));",
+              "pm.collectionVariables.set('token_consulta',pm.response.json().token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "18 CONSULTA no puede registrar",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/establecimientos",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token_consulta}}",
+              "type": "string"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"uuid\": \"{{est_uuid}}\",\n  \"agente\": \"ESTACION DE SERVICIOS DE PRUEBA\",\n  \"codigo\": \"{{est_codigo}}\",\n  \"ruc\": \"20000000000\",\n  \"registro\": \"RH-DEMO-001\",\n  \"direccion\": \"AV. DE PRUEBA 123\",\n  \"distrito\": \"HUANUCO\",\n  \"provincia\": \"HUANUCO\",\n  \"departamento\": \"HUANUCO\",\n  \"telefono\": \"062000000\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Rol protegido',()=>pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

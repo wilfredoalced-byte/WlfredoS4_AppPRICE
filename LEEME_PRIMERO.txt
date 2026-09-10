@@ -1,0 +1,79 @@
+PROYECTO PRICE - SEMANA 04
+Android Java + Retrofit + API REST + SQLite + Acta PDF
+
+1. EXTRAER Y ABRIR
+Extrae todo el ZIP. En Android Studio elige Open y selecciona la carpeta
+PROYECTO_PRICE_COMPLETO, donde están settings.gradle.kts y la carpeta app.
+Espera a que termine Gradle Sync. Usa SDK Android 36 y Gradle JDK 17 o superior.
+El proyecto conserva AGP 9.0.1 y Gradle 9.2.1.
+
+2. INICIAR EL SERVIDOR
+Instala Python 3.10 o superior si aún no lo tienes.
+Abre api_rest y ejecuta INICIAR_API.bat. La primera vez necesita Internet
+para instalar las dependencias. Mantén abierta esa ventana mientras pruebas.
+Comprueba en tu navegador: http://127.0.0.1:8000/api/health
+La respuesta debe mostrar status: ok.
+
+3. EJECUTAR ANDROID
+En Android Studio elige el emulador y pulsa Run.
+URL en la pantalla de inicio: http://10.0.2.2:8000/
+Para un teléfono físico, usa http://IP_DE_TU_PC:8000/ y conecta ambos equipos
+a la misma red. Ejemplo: http://192.168.1.10:8000/
+127.0.0.1 dentro del teléfono no es tu computadora.
+
+CUENTAS DE PRÁCTICA
+Usuario: admin         Contraseña: Price2026!
+Usuario: fiscalizador  Contraseña: Price2026!
+Usuario: consulta      Contraseña: Price2026!
+
+ADMIN: registra, edita y elimina borradores. Consulta actas cerradas.
+FISCALIZADOR: registra establecimientos y crea/edita sus fiscalizaciones.
+CONSULTA: consulta registros y visualiza/descarga actas ya finalizadas.
+Los nombres y DNI iniciales son de prueba. Para crear tu cuenta real ejecuta,
+dentro de api_rest: .venv\Scripts\python.exe usuarios.py
+Luego vuelve a iniciar sesión en Android.
+
+4. FLUJO PARA PRESENTAR
+- Inicia sesión y pulsa Sincronizar ahora para descargar los catálogos.
+- Entra a Establecimientos, agrega uno y comprueba el listado/búsqueda.
+- Selecciona Crear fiscalización aquí.
+- Completa expediente, fecha, horarios, registro y datos generales.
+- Abre los productos que vas a registrar e ingresa sus precios.
+- Responde las tres verificaciones.
+- Marca un incumplimiento y redacta sus hechos verificados.
+- Completa observaciones y datos de quien recibe.
+- Dibuja las firmas. Si alguien se niega, registra la negativa.
+- Guarda el avance. Puedes salir y volver a abrirlo.
+- Usa Vista previa para revisar el documento.
+- Finaliza la fiscalización y pulsa Generar PDF para elegir dónde guardarlo.
+- Usa Ver y compartir para abrirlo o compartir el archivo.
+Los botones Vista previa y Generar PDF permanecen separados.
+
+5. PRUEBAS Y ENTREGABLES
+pruebas\PRICE_Postman.json: importa esta colección en Postman.
+pruebas\test_api.py: pruebas HTTP con base temporal, sin tocar tus registros.
+Para ejecutarlas desde la carpeta principal:
+api_rest\.venv\Scripts\python.exe pruebas\test_api.py
+
+Consulta documentos\DOCUMENTO_TECNICO.docx para arquitectura, tablas,
+endpoints, límites del formato y explicación para sustentar.
+El acta de evidencias usa datos ficticios y firmas DEMO.
+evidencias\ACTA_PRICE_ANDROID.pdf fue generado y guardado desde la app.
+evidencias\RECORRIDO_PRICE.mp4 muestra el recorrido con capturas reales y
+explicaciones. Es un montaje de la ejecución, sin audio. GUIA_VIDEO.txt te
+permite grabar una presentación propia con narración y registro desde cero.
+evidencias\ESTADO_VERIFICACION.txt detalla las comprobaciones realizadas.
+
+También puedes instalar instalador\PRICE_DEMO.apk en Android 8 o superior.
+El APK necesita la API iniciada para el primer ingreso y la sincronización.
+
+6. SI NO CONECTA
+- Confirma que INICIAR_API.bat siga abierto y /api/health funcione en la PC.
+- En el emulador usa 10.0.2.2, no localhost.
+- En un teléfono revisa la IP actual de la PC y el acceso de Python a la red
+  privada de Windows. No es necesario publicar el servidor en Internet.
+- Si el puerto 8000 ya está ocupado, usa python server.py --seed-demo --port 8001
+  y cambia el puerto en la URL de Android.
+- Si la sesión venció, vuelve a iniciar sesión. Tus datos locales se conservan.
+- Si hay un conflicto de versión, tus cambios quedan pendientes: revisa el
+  registro desde la lista antes de decidir qué copia conservar.

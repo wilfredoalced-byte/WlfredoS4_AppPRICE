@@ -1,0 +1,44 @@
+VIDEO DE PRESENTACIÓN - GUIÓN DE 3 A 4 MINUTOS
+
+Graba tu emulador o teléfono durante este recorrido. Usa datos de prueba.
+
+0:00 - 0:25
+Muestra la API iniciada y /api/health. Explica: "La app Android se comunica
+con una API REST mediante Retrofit y guarda una copia local en SQLite".
+
+0:25 - 1:05
+Inicia sesión como fiscalizador. Agrega un establecimiento. Búscalo por RUC
+o código y abre su detalle. Crea una fiscalización desde ese establecimiento.
+
+1:05 - 2:05
+Registra expediente, fecha y horarios. Ingresa un precio PRICE y publicado.
+Responde las tres verificaciones. Selecciona un incumplimiento y escribe los
+hechos. Explica que el texto del catálogo no reemplaza la evidencia observada.
+
+2:05 - 2:45
+Completa otros datos. Registra ambas firmas o documenta la negativa.
+Guarda el avance. Abre Vista previa y muestra las dos páginas del acta.
+
+2:45 - 3:20
+Finaliza. Pulsa Generar PDF y guarda el archivo. Abre Ver y compartir.
+Muestra que se conserva el formato y que los datos provienen del registro.
+
+3:20 - 4:00
+Muestra Reportes. Para demostrar permisos, entra con consulta y comprueba
+que no puede registrar ni eliminar. Si tienes tiempo, guarda un borrador
+con la API detenida y sincronízalo después de volver a iniciarla.
+
+CAPTURAS RECOMENDADAS
+01 Inicio de sesión.
+02 Menú principal.
+03 Establecimientos y búsqueda.
+04 Fiscalización con precios y verificaciones.
+05 Incumplimiento y hecho escrito.
+06 Firmas.
+07 Vista previa, página 1.
+08 Vista previa, página 2.
+09 PDF guardado.
+10 Sincronización completa o prueba sin conexión.
+
+No presentes imágenes simuladas como prueba de ejecución. Las capturas del
+PDF de muestra se identifican como documentos de demostración.

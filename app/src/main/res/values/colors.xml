@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Azul institucional real de Osinergmin (muestreado de su logo oficial) -->
+    <color name="navy_900">#0D1944</color>
+    <color name="navy_800">#142566</color>
+    <color name="navy_700">#203BA4</color>
+    <color name="navy_500">#3254D7</color>
+    <color name="blue_50">#EEF2FC</color>
+    <color name="blue_100">#DCE4F7</color>
+
+    <!-- Amarillo institucional real de Osinergmin (color de apoyo de su marca) -->
+    <color name="accent_700">#FADC20</color>
+    <color name="accent_100">#F9F3D2</color>
+
+    <!-- Semánticos -->
+    <color name="green_700">#1E7A4C</color>
+    <color name="green_100">#E1F3EA</color>
+    <color name="red_700">#C0392B</color>
+    <color name="red_100">#FAE3E1</color>
+
+    <!-- Neutros -->
+    <color name="slate_900">#1B2836</color>
+    <color name="slate_700">#45566A</color>
+    <color name="slate_500">#79899C</color>
+    <color name="slate_300">#C3CEDA</color>
+    <color name="border">#DCE5EE</color>
+    <color name="surface">#F3F6FA</color>
+</resources>

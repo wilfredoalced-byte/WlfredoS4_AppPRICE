@@ -1,0 +1,91 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Diésel B5 / B5 S-50",
+      "unidad": "galón"
+    },
+    {
+      "id": 2,
+      "nombre": "G-84 / Gasohol 84 Plus",
+      "unidad": "galón"
+    },
+    {
+      "id": 3,
+      "nombre": "Gasolina / Gasohol Regular",
+      "unidad": "galón"
+    },
+    {
+      "id": 4,
+      "nombre": "Gasolina / Gasohol Premium",
+      "unidad": "galón"
+    },
+    {
+      "id": 5,
+      "nombre": "GLP Automotor",
+      "unidad": "galón"
+    },
+    {
+      "id": 6,
+      "nombre": "Otros",
+      "unidad": "galón"
+    },
+    {
+      "id": 7,
+      "nombre": "GLP 3 kg",
+      "unidad": "cilindro"
+    },
+    {
+      "id": 8,
+      "nombre": "GLP 5 kg",
+      "unidad": "cilindro"
+    },
+    {
+      "id": 9,
+      "nombre": "GLP 10 kg",
+      "unidad": "cilindro"
+    },
+    {
+      "id": 10,
+      "nombre": "GLP 15 kg",
+      "unidad": "cilindro"
+    },
+    {
+      "id": 11,
+      "nombre": "GLP 45 kg",
+      "unidad": "cilindro"
+    }
+  ],
+  "incumplimientos": [
+    {
+      "id": 1,
+      "descripcion": "No registra ni actualiza en el módulo PRICE el precio de venta vigente por cada combustible y/o por cada signo y color de cilindro de GLP y/o no incluye precio con y sin descuento.",
+      "base_legal": "Art. 3, 4, 6, 8, 14 y 15 del Anexo de la R.C.D. N° 256-2021-OS/CD y modificatorias. Art. 1, 3 y 4 del D.S. N° 043-2005-EM y modificatorias. Art. 63 del D.S. N° 01-94-EM."
+    },
+    {
+      "id": 2,
+      "descripcion": "No exhibe la lista de precios vigente en un lugar visible del establecimiento o en la unidad vehicular.",
+      "base_legal": "Art. 5, 8, 14 y 15 del Anexo de la R.C.D. N° 256-2021-OS/CD. Art. 1 y 4 del D.S. N° 043-2005-EM. Art. 63 del D.S. N° 01-94-EM."
+    },
+    {
+      "id": 3,
+      "descripcion": "No registra ni actualiza en el módulo PRICE su ubicación o número telefónico vigente.",
+      "base_legal": "Art. 8, 14 y 15 del Anexo de la R.C.D. N° 256-2021-OS/CD y modificatorias. Art. 63 del D.S. N° 01-94-EM."
+    },
+    {
+      "id": 4,
+      "descripcion": "No exhibe el horario de atención ni número telefónico vigente en paneles visibles del establecimiento o en la unidad vehicular.",
+      "base_legal": "Art. 8, 14 y 15 del Anexo de la R.C.D. N° 256-2021-OS/CD. Art. 63 del D.S. N° 01-94-EM."
+    },
+    {
+      "id": 5,
+      "descripcion": "No emplea el galón como unidad de medida para la comercialización y/o publicación de los combustibles.",
+      "base_legal": "Art. 1 del D.S. N° 013-2021-EM."
+    },
+    {
+      "id": 6,
+      "descripcion": "No coloca en la parte frontal de los dispensadores una etiqueta visible conteniendo el precio por galón u otra unidad energética equivalente, de acuerdo a los lineamientos que establezca la Dirección General de Hidrocarburos.",
+      "base_legal": "Art. 1 del D.S. N° 013-2021-EM."
+    }
+  ]
+}

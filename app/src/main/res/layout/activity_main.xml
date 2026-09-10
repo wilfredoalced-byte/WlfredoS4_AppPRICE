@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface"
+    android:fillViewport="true"
+    android:clipToPadding="false"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="14dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="14dp"
+        android:paddingBottom="36dp">
+
+        <!-- ENCABEZADO -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_header"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ACTA DE FISCALIZACIÓN"
+                android:textColor="@color/white"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Registro y verificación de información PRICE"
+                android:textColor="#DCEAF4"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_signature"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:text="FORMULARIO DIGITAL"
+                android:textColor="@color/navy_900"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- I -->
+        <LinearLayout style="@style/SectionCard">
+            <TextView style="@style/SectionTitle" android:text="I. DATOS DEL ESTABLECIMIENTO" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Información general del agente fiscalizado"
+                android:textColor="@color/slate_500"
+                android:textSize="12sp" />
+
+            <EditText android:id="@+id/etExpediente" android:maxLength="28" style="@style/FormField" android:hint="N.° de expediente *" android:inputType="text" />
+            <EditText android:id="@+id/etAgente" style="@style/FormField" android:hint="Agente fiscalizado *" android:inputType="textCapWords" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                <EditText android:id="@+id/etCodigoOsi" style="@style/FormFieldCompact" android:hint="Código Osinergmin *" android:inputType="text" />
+                <EditText android:id="@+id/etRegistroHidro" style="@style/FormFieldCompact" android:hint="Registro hidrocarburos" android:inputType="text" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnFecha"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_button"
+                android:backgroundTint="@color/navy_700"
+                android:text="SELECCIONAR FECHA DE DILIGENCIA"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvFecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_input"
+                android:gravity="center_vertical"
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:text="Fecha seleccionada: --/--/----"
+                android:textColor="@color/slate_700"
+                android:textSize="14sp" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                <EditText android:id="@+id/etHoraApertura" style="@style/FormFieldCompact" android:hint="Hora apertura" android:inputType="time" />
+                <EditText android:id="@+id/etHoraCierre" style="@style/FormFieldCompact" android:hint="Hora cierre" android:inputType="time" />
+            </LinearLayout>
+
+            <EditText android:id="@+id/etDireccion" style="@style/FormField" android:hint="Dirección *" android:inputType="textPostalAddress" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                <EditText android:id="@+id/etDistrito" style="@style/FormFieldCompact" android:hint="Distrito *" android:inputType="textCapWords" />
+                <EditText android:id="@+id/etProvincia" style="@style/FormFieldCompact" android:hint="Provincia *" android:inputType="textCapWords" />
+            </LinearLayout>
+
+            <EditText android:id="@+id/etDepartamento" style="@style/FormField" android:hint="Departamento" android:inputType="textCapWords" android:text="HUÁNUCO" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                <EditText android:id="@+id/etRuc" style="@style/FormFieldCompact" android:hint="RUC / DNI" android:inputType="number" android:maxLength="11" />
+                <EditText android:id="@+id/etTelefono" style="@style/FormFieldCompact" android:hint="Teléfono" android:inputType="phone" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- II -->
+        <LinearLayout style="@style/SectionCard">
+            <TextView style="@style/SectionTitle" android:text="II. DATOS DEL FISCALIZADOR" />
+            <EditText android:id="@+id/etDniFiscal" style="@style/FormField" android:hint="DNI del fiscalizador *" android:inputType="number" android:maxLength="8" />
+            <EditText android:id="@+id/etNombreFiscal" style="@style/FormField" android:hint="Apellidos y nombres del fiscalizador *" android:inputType="textCapWords" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/priceContainer" style="@style/SectionCard" />
+
+        <!-- IV -->
+        <LinearLayout style="@style/SectionCard">
+            <TextView style="@style/SectionTitle" android:text="IV. VERIFICACIONES" />
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="¿Teléfono publicado en el establecimiento?" android:textColor="@color/slate_900" android:textSize="14sp" />
+            <RadioGroup android:id="@+id/rgTelPub" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingTop="4dp" android:paddingBottom="10dp">
+                <RadioButton android:id="@+id/telPubSi" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sí" />
+                <RadioButton android:id="@+id/telPubNo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="18dp" android:text="No" />
+            </RadioGroup>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/border" />
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="¿Teléfono registrado y actualizado en PRICE?" android:textColor="@color/slate_900" android:textSize="14sp" />
+            <RadioGroup android:id="@+id/rgTelReg" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingTop="4dp" android:paddingBottom="10dp">
+                <RadioButton android:id="@+id/telRegSi" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sí" />
+                <RadioButton android:id="@+id/telRegNo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="18dp" android:text="No" />
+            </RadioGroup>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/border" />
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="¿Horario de atención publicado?" android:textColor="@color/slate_900" android:textSize="14sp" />
+            <RadioGroup android:id="@+id/rgHorario" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingTop="4dp">
+                <RadioButton android:id="@+id/horarioSi" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sí" />
+                <RadioButton android:id="@+id/horarioNo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="18dp" android:text="No" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/factsContainer" style="@style/SectionCard" />
+
+        <!-- VI -->
+        <LinearLayout style="@style/SectionCard">
+            <TextView style="@style/SectionTitle" android:text="VI. INFORMACIÓN COMPLEMENTARIA" />
+            <EditText android:id="@+id/etOtras" style="@style/FormField" android:hint="Otras ocurrencias detectadas" android:gravity="top|start" android:inputType="textMultiLine" android:minLines="2" />
+            <EditText android:id="@+id/etDocumentos" style="@style/FormField" android:hint="Documentación recabada" android:gravity="top|start" android:inputType="textMultiLine" android:minLines="2" />
+            <EditText android:id="@+id/etObservaciones" style="@style/FormField" android:hint="Manifestaciones u observaciones del agente fiscalizado" android:gravity="top|start" android:inputType="textMultiLine" android:minLines="2" />
+            <EditText android:id="@+id/etNegativa" style="@style/FormField" android:hint="Negativa del agente fiscalizado o participantes" android:gravity="top|start" android:inputType="textMultiLine" android:minLines="2" />
+        </LinearLayout>
+
+        <!-- VII -->
+        <LinearLayout style="@style/SectionCard">
+            <TextView style="@style/SectionTitle" android:text="VII. DATOS DE QUIEN RECIBE EL ACTA" />
+            <EditText android:id="@+id/etDniRecibe" style="@style/FormField" android:hint="DNI" android:inputType="number" android:maxLength="8" />
+            <EditText android:id="@+id/etNombreRecibe" style="@style/FormField" android:hint="Apellidos y nombres" android:inputType="textCapWords" />
+            <EditText android:id="@+id/etRelacionRecibe" style="@style/FormField" android:hint="Relación con el agente fiscalizado" android:inputType="textCapWords" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/extraContainer" style="@style/SectionCard" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/btnVistaPrevia"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/bg_button"
+                android:backgroundTint="@color/navy_700"
+                android:text="VISTA PREVIA"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnGenerarPdf"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:background="@drawable/bg_button"
+                android:backgroundTint="@color/green_700"
+                android:text="GENERAR PDF"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Los campos marcados con * son obligatorios"
+            android:textColor="@color/slate_500"
+            android:textSize="11sp" />
+    </LinearLayout>
+</ScrollView>

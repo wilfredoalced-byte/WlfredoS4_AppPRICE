@@ -1,0 +1,30 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.PROYECTO_ACTA_PRAIS" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/navy_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/blue_100</item>
+        <item name="colorOnPrimaryContainer">@color/navy_900</item>
+        <item name="colorSecondary">@color/accent_700</item>
+        <item name="colorOnSecondary">@color/navy_900</item>
+        <item name="colorSecondaryContainer">@color/accent_100</item>
+        <item name="colorOnSecondaryContainer">@color/navy_900</item>
+        <item name="colorTertiary">@color/green_700</item>
+        <item name="colorOnTertiary">@color/white</item>
+        <item name="colorError">@color/red_700</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/slate_900</item>
+        <item name="colorOnSurfaceVariant">@color/slate_700</item>
+        <item name="colorOutline">@color/border</item>
+        <item name="android:colorBackground">@color/surface</item>
+        <item name="colorControlActivated">@color/navy_700</item>
+        <item name="colorControlNormal">@color/slate_500</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:statusBarColor">@color/navy_900</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowActionModeOverlay">true</item>
+    </style>
+
+    <style name="Theme.PROYECTO_ACTA_PRAIS" parent="Base.Theme.PROYECTO_ACTA_PRAIS" />
+</resources>

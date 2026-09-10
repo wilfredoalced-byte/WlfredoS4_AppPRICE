@@ -1,0 +1,12 @@
+{
+  "uuid": "demo-establecimiento-price",
+  "agente": "ESTACION DE SERVICIOS DE PRUEBA",
+  "codigo": "DEMO-001",
+  "ruc": "20000000000",
+  "registro": "RH-DEMO-001",
+  "direccion": "AV. DE PRUEBA 123",
+  "distrito": "HUANUCO",
+  "provincia": "HUANUCO",
+  "departamento": "HUANUCO",
+  "telefono": "062000000"
+}

@@ -1,0 +1,13 @@
+*.iml
+.gradle/
+.idea/
+local.properties
+/build/
+/app/build/
+__pycache__/
+*.pyc
+.venv/
+.env
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
